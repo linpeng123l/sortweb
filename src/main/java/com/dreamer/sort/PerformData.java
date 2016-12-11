@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class PerformData {
 
-    private int[] xAxis;
+    private float[] xAxis;
     private List<AlgorithmPerform> algorithmPerforms;
 
 
@@ -19,15 +19,15 @@ public class PerformData {
         return algorithmPerforms;
     }
 
-    public void setxAxis(int[] xAxis) {
+    public void setxAxis(float[] xAxis) {
         this.xAxis = xAxis;
     }
 
-    public int[] getxAxis() {
+    public float[] getxAxis() {
         return xAxis;
     }
 
-    static class AlgorithmPerform {
+    public static class AlgorithmPerform {
         private String name;
         private int[] datas;
 

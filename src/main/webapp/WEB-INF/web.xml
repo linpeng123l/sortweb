@@ -12,4 +12,15 @@
     <servlet-name>numServlet</servlet-name>
     <url-pattern>/numServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>keywordServlet</servlet-name>
+    <servlet-class>com.dreamer.servlet.KeyWordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>keywordServlet</servlet-name>
+    <url-pattern>/keywordServlet</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>keywordyear.html</welcome-file>
+  </welcome-file-list>
 </web-app>

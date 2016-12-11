@@ -8,9 +8,12 @@ import java.util.List;
  */
 public interface Sort {
 
-    static int[] numSize = new int[]{10, 100, 1000, 5000, 10000, 20000,50000,100000};
+    static int[] numSize = new int[]{10, 100, 1000, 5000, 10000, 20000,50000};
+    //static int[] numSize = new int[]{10, 100, 1000, 5000, 10000, 20000,50000,100000};
     //    static int[] numSize = new int[]{10, 100, 1000, 100, 100, 10000};
-    static int[] maxNum = new int[]{100, 1000, 1000, 10000, 10000, 10000,10000,10000};
+    static int[] maxNum = new int[]{100, 1000, 1000, 10000, 10000, 10000,10000};
+    //static int[] maxNum = new int[]{100, 1000, 1000, 10000, 10000, 10000,10000,10000};
+
 
     void sort(int[] datasList);
 
@@ -51,7 +54,7 @@ public interface Sort {
 
         PerformData performData = new PerformData();
         performData.setAlgorithmPerforms(algorithmPerforms);
-        performData.setxAxis(numSize);
+//        performData.setxAxis(numSize);
         return performData;
     }
 
