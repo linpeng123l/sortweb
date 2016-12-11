@@ -89,7 +89,7 @@ public class AprioriPerformService {
             long[] nums = new long[MAX_ITEM];
             for (int j = 0; j < 32; j++) {
                 for (int k = 1; k <= MAX_ITEM; k++) {
-                    nums[k-1] = nums[k-1] + (long) (Math.pow(2, 32 - j - 1) * (transactions.get(i * 32 + j).containsItemSet("" + k) ? 1 : 0));
+                    nums[k-1] = nums[k-1] + (long) ((1L << 32 - j - 1) * (transactions.get(i * 32 + j).containsItemSet("" + k) ? 1 : 0));
                 }
             }
             List<Long> nums2 = new ArrayList<>(MAX_ITEM);
