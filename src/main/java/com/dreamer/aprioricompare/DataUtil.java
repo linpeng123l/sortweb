@@ -31,7 +31,7 @@ public class DataUtil {
         try {
             List<Transaction> transactions = new ArrayList<>();
             System.out.println(DataUtil.class.getClassLoader().getResource("pumsb_star.dat"));
-            BufferedReader br = new BufferedReader(new FileReader(DataUtil.class.getClassLoader().getResource("pumsb_start.dat").getFile()));
+            BufferedReader br = new BufferedReader(new FileReader(DataUtil.class.getClassLoader().getResource("mushroom.dat").getFile()));
             String line = null;
             while ((line = br.readLine()) != null) {
                 String[] inputchars = line.split(" ");

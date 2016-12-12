@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class AprioriPerformService {
 
@@ -19,17 +20,22 @@ public class AprioriPerformService {
     private static List<Item> itemList = new ArrayList<Item>();
 //    private static float SDC = (float) 0.2;
 
-    private static float start = 0.25f;
+    private static float start = 0.2f;
     private static float end = 0.9f;
-    private static int count = 4;
+    private static int count = 30;
     private static List<BitTransction> bitTransctions;
+    private static Logger logger = Logger.getLogger("start");
 
     public static PerformData getSortPerformData() {
         init();
 
         List<PerformData.AlgorithmPerform> algorithmPerforms = new ArrayList<>();
+        logger.info("开始测试apriori算法");
         algorithmPerforms.add(testApriori());
+        logger.info("结束测试apriori算法");
+        logger.info("开始测试bitapriori算法");
         algorithmPerforms.add(testBitApriori());
+        logger.info("开始测试bitapriori算法");
 
         PerformData performData = new PerformData();
         performData.setAlgorithmPerforms(algorithmPerforms);
@@ -43,19 +49,26 @@ public class AprioriPerformService {
     }
 
     private static void init() {
+        logger.info("开始读取数据");
         transactions = DataUtil.getTransactions();
+        logger.info("结束读取数据");
+        logger.info("开始过滤数据");
         createItem();
+        logger.info("结束过滤数据");
+        logger.info("开始转换十进制数据");
         bitTransctions = convertTransactions();
-
+        logger.info("结束转换十进制数据");
     }
 
     static PerformData.AlgorithmPerform testBitApriori() {
         int[] times = new int[count];
         for (int i = 0; i < count; i++) {
+            logger.info("开始第"+(i+1)+"次测试bitapriori算法");
             long startTime = System.currentTimeMillis();
             new BitApriori(itemList, start + ((end-start)*i)/(count-1), transactions,bitTransctions);
             long endTime = System.currentTimeMillis();
             times[i] = (int) (endTime - startTime);
+            logger.info("结束第"+(i+1)+"次测试bitapriori算法");
         }
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
         algorithmPerform.setDatas(times);
@@ -67,10 +80,12 @@ public class AprioriPerformService {
     static PerformData.AlgorithmPerform testApriori() {
         int[] times = new int[count];
         for (int i = 0; i < count; i++) {
+            logger.info("开始第"+(i+1)+"次测试apriori算法");
             long startTime = System.currentTimeMillis();
             new Apriori(itemList, start + ((end-start)*i)/(count-1), transactions);
             long endTime = System.currentTimeMillis();
             times[i] = (int) (endTime - startTime);
+            logger.info("结束第"+(i+1)+"次测试apriori算法");
         }
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
         algorithmPerform.setDatas(times);
