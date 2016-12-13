@@ -43,35 +43,17 @@ public class BitApriori {
         }
 
         // print the results
-       /* try {
-            File file = new File("result1.txt");
-            if (file.exists()) {
-                file.delete();
-            }
-
-            file.createNewFile();
-
-            FileWriter fw = new FileWriter(file);
 
 
-            for (int i = count; i >= 0; i--) {
-                fw.write("No. of length " + (i + 1) + " frequent itemsets: " + frequenrItemSets.get(i).size());
-                fw.write("\n");
+            for (int i = count; i >= count; i--) {
                 System.out.println("No. of length " + (i + 1) + " frequent itemsets: " + frequenrItemSets.get(i).size());
 
                 for (int j = 0; j < frequenrItemSets.get(i).size(); j++) {
-                    fw.write("{" + frequenrItemSets.get(i).get(j).getItemSet() + "}: support-count=" + frequenrItemSets.get(i).get(j).getCount());
-                    fw.write("\n");
                     System.out.println("{" + frequenrItemSets.get(i).get(j).getItemSet() + "}: support-count=" + frequenrItemSets.get(i).get(j).getCount());
                 }
-                fw.write("\n");
             }
 
-            fw.close();
 
-        } catch (Exception e) {
-
-        }*/
     }
 
     private void scanItemSetList(List<ItemSet> canditateItemSets) {

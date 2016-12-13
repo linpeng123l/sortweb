@@ -7,8 +7,8 @@
     <script src="jquery.js"></script>
 </header>
 <body>
-<div style="width: 1300px;height:800px;margin: 0 auto;">
-<div id="main" style="width: 1300px;height:800px;margin: 0 auto;"></div>
+<div style="width: 1300px;height:700px;margin: 0 auto;">
+    <div id="main" style="width: 400px;height:250px;margin: 0 auto;"></div>
 </div>
 </body>
 
@@ -23,20 +23,31 @@
             var series = [];
             for (var i = 0; i < data.algorithmPerforms.length; i++) {
                 legendData.push(data.algorithmPerforms[i].name);
+                var datas = [];
+                for (var j = 0; j < data.algorithmPerforms[i].datas.length; j++) {
+                    datas.push([data.xAxis[j], data.algorithmPerforms[i].datas[j]]);
+                }
+
                 series.push({
                     name: data.algorithmPerforms[i].name,
                     type: 'line',
-                    data: data.algorithmPerforms[i].datas
+                    symbolSize: 5,
+                    data: datas
                 });
             }
+            series[0].symbol = 'circle';
+            series[1].symbol = 'rect';
             var option = {
                 title: {
-                    text: '排序算法'
+                    text: '',
+                    left : 'center'
                 },
                 tooltip: {
                     trigger: 'axis'
                 },
                 legend: {
+                    right: 40,
+                    top: 30,
                     data: legendData
                 },
                 grid: {
@@ -51,12 +62,34 @@
                     }
                 },
                 xAxis: {
-                    type: 'category',
-                    boundaryGap: false,
-                    data: data.xAxis
+                    type: 'value',
+                    name: '支持度',
+                    nameLocation: 'middle',
+                    min: 0.25,
+                    max: 0.5,
+//                    splitNumber:5,
+//                    minInterval : 0.1,
+                    nameTextStyle: {
+                        fontSize: 12
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    nameGap: 20
+//                    boundaryGap: false,
+//                    data: data.xAxis
                 },
                 yAxis: {
-                    type: 'value'
+                    type: 'value',
+                    nameLocation: 'middle',
+                    nameTextStyle: {
+                        fontSize: 12
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    nameGap: 35,
+                    name: '执行时间(ms)'
                 },
                 series: series
             };

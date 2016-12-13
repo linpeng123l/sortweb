@@ -13,16 +13,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class AprioriPerformService {
+public class AprioriPerformServiceOnPumsb {
 
     private static final int MAX_ITEM = 8000;
     private static List<Transaction> transactions = new ArrayList<Transaction>();
     private static List<Item> itemList = new ArrayList<Item>();
 //    private static float SDC = (float) 0.2;
 
-    private static float start = 0.2f;
-    private static float end = 0.9f;
-    private static int count = 30;
+    private static float start = 0.3f;
+    private static float end = 0.3f;
+    private static int count = 1;
     private static List<BitTransction> bitTransctions;
     private static Logger logger = Logger.getLogger("start");
 
@@ -41,8 +41,8 @@ public class AprioriPerformService {
         performData.setAlgorithmPerforms(algorithmPerforms);
 
         float[] axis = new float[count];
-        for(int i = 0;i<count;i++){
-            axis[i] = start + ((end-start)*i)/(count-1);
+        for (int i = 0; i < count; i++) {
+            axis[i] = start + ((end - start) * i) / (count - 1);
         }
         performData.setxAxis(axis);
         return performData;
@@ -50,7 +50,7 @@ public class AprioriPerformService {
 
     private static void init() {
         logger.info("开始读取数据");
-        transactions = DataUtil.getTransactions();
+        transactions = DataUtil.getTransactions("pumsb_start.dat");
         logger.info("结束读取数据");
         logger.info("开始过滤数据");
         createItem();
@@ -63,16 +63,16 @@ public class AprioriPerformService {
     static PerformData.AlgorithmPerform testBitApriori() {
         int[] times = new int[count];
         for (int i = 0; i < count; i++) {
-            logger.info("开始第"+(i+1)+"次测试bitapriori算法");
+            logger.info("开始第" + (i + 1) + "次测试bitapriori算法");
             long startTime = System.currentTimeMillis();
-            new BitApriori(itemList, start + ((end-start)*i)/(count-1), transactions,bitTransctions);
+            new BitApriori(itemList, start + ((end - start) * i) / (count - 1), transactions, bitTransctions);
             long endTime = System.currentTimeMillis();
             times[i] = (int) (endTime - startTime);
-            logger.info("结束第"+(i+1)+"次测试bitapriori算法");
+            logger.info("结束第" + (i + 1) + "次测试bitapriori算法");
         }
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
         algorithmPerform.setDatas(times);
-        algorithmPerform.setName("基于位运算的apriori算法");
+        algorithmPerform.setName("DecBitApriori算法");
         return algorithmPerform;
     }
 
@@ -80,12 +80,12 @@ public class AprioriPerformService {
     static PerformData.AlgorithmPerform testApriori() {
         int[] times = new int[count];
         for (int i = 0; i < count; i++) {
-            logger.info("开始第"+(i+1)+"次测试apriori算法");
+            logger.info("开始第" + (i + 1) + "次测试apriori算法");
             long startTime = System.currentTimeMillis();
-            new Apriori(itemList, start + ((end-start)*i)/(count-1), transactions);
+            new Apriori(itemList, start + ((end - start) * i) / (count - 1), transactions);
             long endTime = System.currentTimeMillis();
             times[i] = (int) (endTime - startTime);
-            logger.info("结束第"+(i+1)+"次测试apriori算法");
+            logger.info("结束第" + (i + 1) + "次测试apriori算法");
         }
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
         algorithmPerform.setDatas(times);
@@ -95,21 +95,21 @@ public class AprioriPerformService {
 
     private static List<BitTransction> convertTransactions() {
         int TRAN_COUNT = transactions.size();
-        for(int i = 0;i<((TRAN_COUNT-1) / 32 + 1)*32-TRAN_COUNT;i++){
+        for (int i = 0; i < ((TRAN_COUNT - 1) / 32 + 1) * 32 - TRAN_COUNT; i++) {
             transactions.add(new Transaction(new ArrayList<>()));
         }
 
         List<BitTransction> bitTransctions = new ArrayList<>(TRAN_COUNT / 32 + 1);
-        for (int i = 0; i < ((TRAN_COUNT-1) / 32 + 1); i++) {
+        for (int i = 0; i < ((TRAN_COUNT - 1) / 32 + 1); i++) {
             long[] nums = new long[MAX_ITEM];
             for (int j = 0; j < 32; j++) {
                 for (int k = 1; k <= MAX_ITEM; k++) {
-                    nums[k-1] = nums[k-1] + (long) ((1L << 32 - j - 1) * (transactions.get(i * 32 + j).containsItemSet("" + k) ? 1 : 0));
+                    nums[k - 1] = nums[k - 1] + (long) ((1L << 32 - j - 1) * (transactions.get(i * 32 + j).containsItemSet("" + k) ? 1 : 0));
                 }
             }
             List<Long> nums2 = new ArrayList<>(MAX_ITEM);
             for (int j = 1; j <= MAX_ITEM; j++) {
-                nums2.add(nums[j-1]);
+                nums2.add(nums[j - 1]);
             }
             bitTransctions.add(new BitTransction(nums2));
         }
@@ -132,7 +132,7 @@ public class AprioriPerformService {
                 usedNames.add(itemName);
             }
         }
-        for (int i = 0; i < transactions.size(); i++) {
+        /*for (int i = 0; i < transactions.size(); i++) {
             List<String> trans = transactions.get(i).getTrans();
             boolean isIn = false;
             for (String tran : trans) {
@@ -141,10 +141,10 @@ public class AprioriPerformService {
                 }
             }
             if (!isIn) {
-                transactions.remove(i);
-                i--;
+//                transactions.remove(i);
+//                i--;
             }
-        }
+        }*/
     }
 
     public static void main(String[] args) {

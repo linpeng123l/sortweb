@@ -38,7 +38,13 @@ public class Apriori {
             frequenrItemSets.add(canditateItemSets);
             count++;
         }
+        for (int i = count; i >= count; i--) {
+            System.out.println("No. of length " + (i + 1) + " frequent itemsets: " + frequenrItemSets.get(i).size());
 
+            for (int j = 0; j < frequenrItemSets.get(i).size(); j++) {
+                System.out.println("{" + frequenrItemSets.get(i).get(j).getItemSet() + "}: support-count=" + frequenrItemSets.get(i).get(j).getCount());
+            }
+        }
         // print the results
         /*try {
             File file = new File("result1.txt");
@@ -72,6 +78,7 @@ public class Apriori {
     }
 
     private void scanItemSetList(List<ItemSet> canditateItemSets) {
+    int i =0;
         for (Transaction transaction : transactions) {
             List<String> teans = transaction.getTrans();
             for (ItemSet itemSet : canditateItemSets) {
