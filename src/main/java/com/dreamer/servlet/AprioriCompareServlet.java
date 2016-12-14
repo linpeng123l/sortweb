@@ -2,6 +2,7 @@ package com.dreamer.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.dreamer.aprioricompare.AprioriPerformServiceOnMushroom;
+import com.dreamer.aprioricompare.AprioriPerformServiceOnTd4;
 import com.dreamer.sort.PerformData;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,7 @@ public class AprioriCompareServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         Writer writer = response.getWriter();
-        PerformData performData = AprioriPerformServiceOnMushroom.getSortPerformData();
+        PerformData performData = AprioriPerformServiceOnTd4.getSortPerformData();
         writer.write(JSON.toJSON(performData).toString());
         writer.close();
     }

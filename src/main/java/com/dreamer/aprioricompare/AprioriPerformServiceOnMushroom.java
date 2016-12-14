@@ -20,7 +20,7 @@ public class AprioriPerformServiceOnMushroom {
     private static List<Item> itemList = new ArrayList<Item>();
 //    private static float SDC = (float) 0.2;
 
-    private static float start = 0.25f;
+    private static float start = 0.1f;
     private static float end = 0.5f;
     private static int count = 50;
     private static List<BitTransction> bitTransctions;
@@ -62,16 +62,16 @@ public class AprioriPerformServiceOnMushroom {
 
     static PerformData.AlgorithmPerform testBitApriori() {
         int[] times = new int[count];
-        /*for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             logger.info("开始第"+(i+1)+"次测试bitapriori算法");
             long startTime = System.currentTimeMillis();
             new BitApriori(itemList, start + ((end-start)*i)/(count-1), transactions,bitTransctions);
             long endTime = System.currentTimeMillis();
             times[i] = (int) (endTime - startTime);
             logger.info("结束第"+(i+1)+"次测试bitapriori算法");
-        }*/
+        }
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
-        times = new int[]{3166, 2423, 1822, 1600, 1472, 1400, 1091, 1076, 900, 854, 846, 597, 479, 435, 345, 303, 281, 238, 209, 202, 163, 163, 122, 106, 100, 88, 86, 80, 64, 52, 51, 50, 39, 33, 29, 27, 27, 27, 27, 28, 18, 22, 16, 17, 15, 16, 9, 10, 8, 8};
+//        times = new int[]{3166, 2423, 1822, 1600, 1472, 1400, 1091, 1076, 900, 854, 846, 597, 479, 435, 345, 303, 281, 238, 209, 202, 163, 163, 122, 106, 100, 88, 86, 80, 64, 52, 51, 50, 39, 33, 29, 27, 27, 27, 27, 28, 18, 22, 16, 17, 15, 16, 9, 10, 8, 8};
         algorithmPerform.setDatas(times);
         algorithmPerform.setName("DecBitApriori算法");
         return algorithmPerform;
@@ -80,16 +80,16 @@ public class AprioriPerformServiceOnMushroom {
 
     static PerformData.AlgorithmPerform testApriori() {
         int[] times = new int[count];
-        /*for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             logger.info("开始第"+(i+1)+"次测试apriori算法");
             long startTime = System.currentTimeMillis();
             new Apriori(itemList, start + ((end-start)*i)/(count-1), transactions);
             long endTime = System.currentTimeMillis();
             times[i] = (int) (endTime - startTime);
             logger.info("结束第"+(i+1)+"次测试apriori算法");
-        }*/
+        }
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
-        times = new int[]{15494, 14215, 13181, 12879, 11164, 10607, 9388, 8715, 8295, 7933, 6950, 6709, 5640, 5413, 4833, 4591, 4038, 3705, 3429, 3154, 2830, 2824, 2533, 2509, 2234, 2101, 1940, 1898, 1668, 1511, 1332, 1180, 1199, 1153, 974, 992, 891, 841, 848, 927, 926, 722, 638, 549, 522, 520, 501, 388, 385, 380};
+//        times = new int[]{15494, 14215, 13181, 12879, 11164, 10607, 9388, 8715, 8295, 7933, 6950, 6709, 5640, 5413, 4833, 4591, 4038, 3705, 3429, 3154, 2830, 2824, 2533, 2509, 2234, 2101, 1940, 1898, 1668, 1511, 1332, 1180, 1199, 1153, 974, 992, 891, 841, 848, 927, 926, 722, 638, 549, 522, 520, 501, 388, 385, 380};
         algorithmPerform.setDatas(times);
         algorithmPerform.setName("apriori算法");
         return algorithmPerform;

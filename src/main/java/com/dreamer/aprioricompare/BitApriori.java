@@ -45,7 +45,7 @@ public class BitApriori {
         // print the results
 
 
-            for (int i = count; i >= count; i--) {
+            for (int i = count; i >= count-1; i--) {
                 System.out.println("No. of length " + (i + 1) + " frequent itemsets: " + frequenrItemSets.get(i).size());
 
                 for (int j = 0; j < frequenrItemSets.get(i).size(); j++) {

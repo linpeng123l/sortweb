@@ -24,6 +24,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:6.0.4" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.4" level="application_server_libraries" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.9" level="application_server_libraries" />
   </component>
 </module>

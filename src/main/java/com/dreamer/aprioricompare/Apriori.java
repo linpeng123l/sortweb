@@ -31,14 +31,21 @@ public class Apriori {
 
         generateF1(itemList);
         int count = 0;
+        long start = System.currentTimeMillis();
         for (int i = 1; !frequenrItemSets.get(i - 1).isEmpty(); i++) {
+            logger.info("第"+(i+1)+"次扫描");
+            logger.info("扫描候选集");
             List<ItemSet> canditateItemSets = GenerateCanditateItemSetUtil.genCanditateItemSets(frequenrItemSets.get(i - 1));
+            logger.info("结束扫描候选集，花费："+(System.currentTimeMillis()-start));
+            start = System.currentTimeMillis();
+            logger.info("扫描项集");
             scanItemSetList(canditateItemSets);
+            logger.info("结束扫描项集，花费："+(System.currentTimeMillis()-start));
             pruneItemSetList(canditateItemSets);
             frequenrItemSets.add(canditateItemSets);
             count++;
         }
-        for (int i = count; i >= count; i--) {
+        for (int i = count; i >= count-1; i--) {
             System.out.println("No. of length " + (i + 1) + " frequent itemsets: " + frequenrItemSets.get(i).size());
 
             for (int j = 0; j < frequenrItemSets.get(i).size(); j++) {
@@ -78,8 +85,9 @@ public class Apriori {
     }
 
     private void scanItemSetList(List<ItemSet> canditateItemSets) {
-    int i =0;
+          int i =0;
         for (Transaction transaction : transactions) {
+//            System.out.println(i++);
             List<String> teans = transaction.getTrans();
             for (ItemSet itemSet : canditateItemSets) {
                 if (ArrayCompare.inStrArray(teans,itemSet.getItems())) {
