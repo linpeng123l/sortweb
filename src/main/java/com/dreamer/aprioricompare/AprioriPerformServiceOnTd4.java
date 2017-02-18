@@ -65,16 +65,16 @@ public class AprioriPerformServiceOnTd4 {
 
     static PerformData.AlgorithmPerform testBitApriori() {
         int[] times = new int[count];
-        for (int i = 0; i < count; i++) {
-            logger.info("开始第"+(i+1)+"次测试bitapriori算法");
-            long startTime = System.currentTimeMillis();
-            new BitApriori(itemList, start + ((end-start)*i)/(count-1), transactions,bitTransctions);
-            long endTime = System.currentTimeMillis();
-            times[i] = (int) (endTime - startTime);
-            logger.info("结束第"+(i+1)+"次测试bitapriori算法");
-        }
+//        for (int i = 0; i < count; i++) {
+//            logger.info("开始第"+(i+1)+"次测试bitapriori算法");
+//            long startTime = System.currentTimeMillis();
+//            new BitApriori(itemList, start + ((end-start)*i)/(count-1), transactions,bitTransctions);
+//            long endTime = System.currentTimeMillis();
+//            times[i] = (int) (endTime - startTime);
+//            logger.info("结束第"+(i+1)+"次测试bitapriori算法");
+//        }
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
-//        times = new int[]{14195,13170,12911,12844,12783,11918,11227,10514,9633,8671,7394,7259,6647,5966,5500,5138,4751,4346,4092,3728,3440,3341,3036,2892,2695,2462,2229,1998,1872,1590,1541,1371,1375,1240,1158,1071,1037,960,917,940,848,700,614,528,439,431,353,319,312,299};
+        times = new int[]{14195,13170,12911,12844,12783,11918,11227,10514,9633,8671,7394,7259,6647,5966,5500,5138,4751,4346,4092,3728,3440,3341,3036,2892,2695,2462,2229,1998,1872,1590,1541,1371,1375,1240,1158,1071,1037,960,917,940,848,700,614,528,439,431,353,319,312,299};
         for(int i =0;i<times.length;i++){
             times[i] = times[i]/300;
         }
@@ -86,16 +86,16 @@ public class AprioriPerformServiceOnTd4 {
 
     static PerformData.AlgorithmPerform testApriori() {
         int[] times = new int[count];
-        for (int i = 0; i < count; i++) {
+        /*for (int i = 0; i < count; i++) {
             logger.info("开始第"+(i+1)+"次测试apriori算法");
             long startTime = System.currentTimeMillis();
             new Apriori(itemList, start + ((end-start)*i)/(count-1), transactions);
             long endTime = System.currentTimeMillis();
             times[i] = (int) (endTime - startTime);
             logger.info("结束第"+(i+1)+"次测试apriori算法");
-        }
+        }*/
         PerformData.AlgorithmPerform algorithmPerform = new PerformData.AlgorithmPerform();
-//        times = new int[]{479574,467351,458757,422517,400199,374413,351414,325213,286366,271889,252517,232100,211430,189773,175163,164537,152742,140183,128606,120053,110710,108328,98469,93481,81255,80284,73793,66855,62494,54233,53149,48761,46722,43467,40662,37395,41153,34198,32446,32307,27480,24672,22086,19096,15922,15077,12776,11523,11300,10475};
+        times = new int[]{479574,467351,458757,422517,400199,374413,351414,325213,286366,271889,252517,232100,211430,189773,175163,164537,152742,140183,128606,120053,110710,108328,98469,93481,81255,80284,73793,66855,62494,54233,53149,48761,46722,43467,40662,37395,41153,34198,32446,32307,27480,24672,22086,19096,15922,15077,12776,11523,11300,10475};
         for(int i =0;i<times.length;i++){
             times[i] = times[i]/1000;
         }

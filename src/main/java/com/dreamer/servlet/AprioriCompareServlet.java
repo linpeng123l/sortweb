@@ -26,7 +26,7 @@ public class AprioriCompareServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         Writer writer = response.getWriter();
-        PerformData performData = AprioriPerformServiceOnTd4.getSortPerformData();
+        PerformData performData = com.dreamer.dhpcompare.AprioriPerformServiceOnMushroom.getSortPerformData();
         writer.write(JSON.toJSON(performData).toString());
         writer.close();
     }

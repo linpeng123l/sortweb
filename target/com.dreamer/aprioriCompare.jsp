@@ -53,7 +53,7 @@
                 grid: {
                     left: '7%',
                     right: '5%',
-                    bottom: '7%',
+                    bottom: '9%',
                     containLabel: true
                 },
                 toolbox: {
@@ -65,8 +65,8 @@
                     type: 'value',
                     name: '支持度',
                     nameLocation: 'middle',
-                    min: 0 ,
-                    max: 0.03,
+                    min: 0.1,
+                    max: 0.5,
 //                    splitNumber:5,
 //                    minInterval : 0.1,
                     nameTextStyle: {
@@ -88,8 +88,8 @@
                     splitLine: {
                         show: false
                     },
-                    nameGap: 35,
-                    name: '执行时间(s)'
+                    nameGap: 55,
+                    name: '执行时间(ms)'
                 },
                 series: series
             };
